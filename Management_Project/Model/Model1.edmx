@@ -13,6 +13,7 @@
           <Property Name="CustomerName" Type="nvarchar" MaxLength="255" />
           <Property Name="Created_at" Type="datetime" />
           <Property Name="Total" Type="varchar" MaxLength="50" />
+          <Property Name="TrangThai" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="BillInfo">
           <Key>
@@ -128,6 +129,7 @@
           <Property Name="CustomerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Created_at" Type="DateTime" Precision="3" />
           <Property Name="Total" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TrangThai" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BillInfoes" Relationship="Self.FK_BillInfo_Bill" FromRole="Bill" ToRole="BillInfo" />
         </EntityType>
         <EntityType Name="BillInfo">
@@ -249,6 +251,7 @@
                 <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
                 <ScalarProperty Name="Created_at" ColumnName="Created_at" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

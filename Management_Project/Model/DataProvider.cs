@@ -167,7 +167,7 @@ namespace Management_Project.Model
                 return false;
             }
         }
-
+       
         public static Product GetInfoProduct(string ProductID)
         {
             try
@@ -183,7 +183,7 @@ namespace Management_Project.Model
             }
         }
 
-        public static bool CreateBill(List<Item> items,string CustomerName,string BillID,string Total)
+        public static bool CreateBill(List<Item> items,string CustomerName,string BillID,string Total,string tt)
         {
             try
             {
@@ -193,9 +193,18 @@ namespace Management_Project.Model
                 ItemBill.Total = Total;
                 ItemBill.CustomerName = CustomerName;
                 ItemBill.Bill_ID = BillID;
+                ItemBill.TrangThai = tt;
                 DateTime today = DateTime.Today;
                 ItemBill.Created_at = today;
                 db.Bills.Add(ItemBill);
+                // Insert into table BillInfo
+                for (int i = 0; i < items.Count; i++) {
+                    BillInfo billInfo = new BillInfo();
+                    billInfo.Bill_ID = BillID;
+                    billInfo.ProductID = items[i].ProductID;
+                    billInfo.Qty = Int32.Parse(items[i].Qty);
+                    db.BillInfoes.Add(billInfo);
+                }
                 int res = db.SaveChanges();
                 if (res > 0) return true;
                 return false;
@@ -203,6 +212,95 @@ namespace Management_Project.Model
             catch(Exception e)
             {
                 return false;
+            }
+        }
+
+        public static List<KeyValuePair<string, int>> GetRevenue(DateTime start,DateTime end)
+        {
+            try
+            {
+                QuanLyBanHangEntities db = new QuanLyBanHangEntities();
+                var ListDate = db.Bills.Where(m => m.Created_at >= start && m.Created_at <= end).Select(m => m.Created_at).Distinct().ToList();
+                //Find total Revenue in this date
+                List<int> TotalRevenue = new List<int>();
+                for(int i = 0; i < ListDate.Count; i++)
+                {
+                    DateTime d = DateTime.Parse(ListDate[i].ToString());
+                    var count = db.Bills.Where(x => x.Created_at == d).ToList();
+                    int total = 0;
+                    for (int j = 0; j < count.Count; j++)
+                    {
+                        total += Int32.Parse(count[j].Total);
+                    }
+                    TotalRevenue.Add(total);
+                }
+                List<KeyValuePair<string, int>> valueList = new List<KeyValuePair<string, int>>();
+                for(int i = 0; i < ListDate.Count; i++)
+                {
+                    DateTime d = DateTime.Parse(ListDate[i].ToString());
+                    valueList.Add(new KeyValuePair<string, int>(d.ToString("dd/MM/yyyy"), TotalRevenue[i]));
+                }
+                return valueList;
+
+
+            }
+            catch (Exception e)
+            {
+                List<KeyValuePair<string, int>> valueList = new List<KeyValuePair<string, int>>();
+                return valueList;
+
+            }
+        }
+
+        public static List<KeyValuePair<string, int>> GetProducts(DateTime start, DateTime end)
+        {
+            try
+            {
+                QuanLyBanHangEntities db = new QuanLyBanHangEntities();
+                var dataset = (from p in db.Bills
+                               join q in db.BillInfoes
+                               on p.Bill_ID equals q.Bill_ID
+                               where p.Created_at >= start && p.Created_at <= end
+                               select q
+                              ).ToList();
+                List<string> ProductID = new List<string>();
+                List<string> ProductName = new List<string>();
+                List<int> Qty = new List<int>();
+                for(int i = 0; i < dataset.Count; i++)
+                {
+                    int index = ProductID.IndexOf(dataset[i].ProductID);
+                    int t = Int32.Parse(dataset[i].Qty.ToString());
+                    if (index != -1)
+                    {
+                        Qty[index] = Qty[index] + t;
+                    }
+                    else {
+                        ProductID.Add(dataset[i].ProductID);
+                        Qty.Add(t);
+                    }
+                }
+                for(int i = 0; i < ProductID.Count; i++)
+                {
+                    string str = ProductID[i].Trim();
+                    Product p = db.Products.First(x => x.ProductID == str);
+                    ProductName.Add(p.Name);
+                }
+
+                List<KeyValuePair<string, int>> valueList = new List<KeyValuePair<string, int>>();
+                for(int i = 0;i< ProductName.Count; i++)
+                {
+                    string Name = ProductName[i].Trim();
+                    valueList.Add(new KeyValuePair<string, int>(Name, Qty[i]));
+                }
+                return valueList;
+
+
+            }
+            catch (Exception e)
+            {
+                List<KeyValuePair<string, int>> valueList = new List<KeyValuePair<string, int>>();
+                return valueList;
+
             }
         }
     }

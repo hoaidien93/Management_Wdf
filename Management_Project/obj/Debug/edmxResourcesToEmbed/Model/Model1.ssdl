@@ -8,6 +8,7 @@
     <Property Name="CustomerName" Type="nvarchar" MaxLength="255" />
     <Property Name="Created_at" Type="datetime" />
     <Property Name="Total" Type="varchar" MaxLength="50" />
+    <Property Name="TrangThai" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="BillInfo">
     <Key>

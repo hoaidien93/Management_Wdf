@@ -42,3 +42,9 @@ C:\Users\HoaiDien\source\repos\1612103_finalProject\Management_Project\obj\Debug
 C:\Users\HoaiDien\source\repos\1612103_finalProject\Management_Project\obj\Debug\ChangeCategory.baml
 C:\Users\HoaiDien\source\repos\1612103_finalProject\Management_Project\obj\Debug\Bill.g.cs
 C:\Users\HoaiDien\source\repos\1612103_finalProject\Management_Project\obj\Debug\Bill.baml
+C:\Users\HoaiDien\source\repos\1612103_finalProject\Management_Project\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll
+C:\Users\HoaiDien\source\repos\1612103_finalProject\Management_Project\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.xml
+C:\Users\HoaiDien\source\repos\1612103_finalProject\Management_Project\obj\Debug\ThongKeDoanhThu.g.cs
+C:\Users\HoaiDien\source\repos\1612103_finalProject\Management_Project\obj\Debug\ThongKeDoanhThu.baml
+C:\Users\HoaiDien\source\repos\1612103_finalProject\Management_Project\obj\Debug\ThongKeSanPham.g.cs
+C:\Users\HoaiDien\source\repos\1612103_finalProject\Management_Project\obj\Debug\ThongKeSanPham.baml

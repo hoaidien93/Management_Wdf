@@ -69,28 +69,28 @@
                             </Grid>
                         </Grid>
                     </Button>
-                    <Button Grid.Column="2" ToolTip="Vật tư">
+                    <Button Grid.Column="2" ToolTip="Thống kê doanh thu" Click="Button_Click_3">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <TextBlock Text="Vật tư" HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Text="Thống kê doanh thu" HorizontalAlignment="Center"></TextBlock>
                             </Grid>
                             <Grid Grid.Row="1">
                                 <materialDesign:PackIcon Width="24" Height="24"  HorizontalAlignment="Center"  Kind="Dns" />
                             </Grid>
                         </Grid>
                     </Button>
-                    <Button Grid.Column="3" ToolTip="Đơn vị đo">
+                    <Button Grid.Column="3" ToolTip="Thống kê sản phẩm" Click="Button_Click_4">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <TextBlock Text="Đơn vị đo" HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Text="Thống kê sản phẩm" HorizontalAlignment="Center"></TextBlock>
                             </Grid>
                             <Grid Grid.Row="1">
                                 <materialDesign:PackIcon Width="24" Height="24"  HorizontalAlignment="Center"  Kind="Altimeter" />
@@ -159,13 +159,13 @@
                                     <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="373,10,-315,10"
                                             Width="80"
                                             Content="Xóa"
-                                            ToolTip="Resource name: MaterialDesignRaisedButton" Name="Delete" Click="Delete_Click"></Button>
+                                            ToolTip="Resource name: MaterialDesignRaisedButton" Name="Delete" Click="Delete_Click" IsEnabled="False"></Button>
                                 </Grid>
                                 <Grid Grid.Column="5">
                                     <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="470,10,-406,0"
                                             Width="80"
                                             Content="Sửa"
-                                            ToolTip="Resource name: MaterialDesignRaisedButton" Name="Change" VerticalAlignment="Top" Click="Change_Click"></Button>
+                                            ToolTip="Resource name: MaterialDesignRaisedButton" Name="Change" VerticalAlignment="Top" Click="Change_Click" IsEnabled="False"></Button>
                                     <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="456,358,-387,-338"
                                         Width="90"
                                         Content="Next"
@@ -190,7 +190,7 @@
                                     <ColumnDefinition Width="auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.ColumnSpan="3" Margin="0,0,-507,0">
-                                    <ListView ItemsSource="{Binding TonKhoList}" Margin="93,-10,-93,103" Name="ListProducts">
+                                    <ListView ItemsSource="{Binding TonKhoList}" Margin="93,-10,-93,103" Name="ListProducts" SelectionChanged="ListProducts_SelectionChanged">
                                         <ListView.View>
                                             <GridView>
                                                 <GridViewColumn Header="STT" DisplayMemberBinding="{Binding STT}"></GridViewColumn>

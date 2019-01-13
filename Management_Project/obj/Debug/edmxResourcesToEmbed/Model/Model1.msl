@@ -8,6 +8,7 @@
           <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
           <ScalarProperty Name="Created_at" ColumnName="Created_at" />
           <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

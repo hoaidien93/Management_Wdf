@@ -115,5 +115,23 @@ namespace Management_Project
             Bill window = new Bill();
             window.ShowDialog();
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            ThongKeDoanhThu window = new ThongKeDoanhThu();
+            window.Show();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            ThongKeSanPham window = new ThongKeSanPham();
+            window.Show();
+        }
+
+        private void ListProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Delete.IsEnabled = true;
+            Change.IsEnabled = true;
+        }
     }
 }

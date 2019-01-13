@@ -8,6 +8,7 @@
     <Property Name="CustomerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="Created_at" Type="DateTime" Precision="3" />
     <Property Name="Total" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TrangThai" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="BillInfoes" Relationship="Self.FK_BillInfo_Bill" FromRole="Bill" ToRole="BillInfo" />
   </EntityType>
   <EntityType Name="BillInfo">

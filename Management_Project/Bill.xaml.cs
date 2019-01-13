@@ -24,6 +24,8 @@ namespace Management_Project
         private bool changeID = false;
         private bool changeBillID = false;
         private bool changeName = false;
+        private bool changeTT = false;
+        private bool changeSP = false;
         private List<Item> Items = new List<Item>();
         private int totalCost = 0;
         public Bill()
@@ -78,10 +80,22 @@ namespace Management_Project
                     it.Name = p.Name;
                     it.Qty = Quantity;
                     it.ProductID = p.ProductID;
-                    Items.Add(it);
+                    Item result = Items.FirstOrDefault(x => x.ProductID == it.ProductID);
+                    if (result != null) {
+                        result.Qty = (Int32.Parse(result.Qty) + Int32.Parse(it.Qty)).ToString();
+                        result.Cost = (Int32.Parse(result.Cost) + Int32.Parse(it.Cost)).ToString();
+                    }
+                    else {
+                        Items.Add(it);
+                    }
                     ListProducts.ItemsSource = null;
                     ListProducts.ItemsSource = Items;
-                    Total.Text = (totalCost + Int32.Parse(it.Cost)).ToString();
+                    totalCost = totalCost + Int32.Parse(it.Cost);
+                    Total.Text = (totalCost).ToString();
+                    changeSP = true;
+                    Delete.IsEnabled = true;
+                    if (changeName && changeBillID && changeTT && changeSP) CreateBill.IsEnabled = true;
+
                 }
             }
             catch(Exception )
@@ -94,13 +108,11 @@ namespace Management_Project
         private void ID_TextChanged(object sender, TextChangedEventArgs e)
         {
             changeBillID = true;
-            if (changeName && changeBillID) CreateBill.IsEnabled = true;
         }
 
         private void Ten_TextChanged(object sender, TextChangedEventArgs e)
         {
             changeName = true;
-            if (changeName && changeBillID) CreateBill.IsEnabled = true;
         }
 
         private void CreateBill_Click(object sender, RoutedEventArgs e)
@@ -108,13 +120,37 @@ namespace Management_Project
             string customerName = Ten.Text;
             string billID = ID.Text;
             string total = Total.Text;
-            bool result = DataProvider.CreateBill(Items,customerName,billID,total);
+            string tt = TrangThai.Text;
+            bool result = DataProvider.CreateBill(Items,customerName,billID,total,tt);
             if (result)
             {
                 MessageBox.Show("Create bill successfully!");
                 this.Close();
             }
             else MessageBox.Show("Something went wrong!");
+        }
+
+        private void TrangThai_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            changeTT = true;
+            if (changeName && changeBillID && changeTT && changeSP) CreateBill.IsEnabled = true;
+        }
+
+        private void CreateBill_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            int count = ListProducts.SelectedItems.Count;
+            for (int x = 0; x < count; x++)
+            {
+                var item = ListProducts.SelectedItems[x] as Item;
+                int index = Items.IndexOf(item);
+                Items.RemoveAt(index);
+                ListProducts.ItemsSource = null;
+                ListProducts.ItemsSource = Items;
+                Total.Text = (Int32.Parse(Total.Text) - Int32.Parse(item.Cost)).ToString();
+            }
+            if (count > 0) MessageBox.Show("Delete " + count + " row successfully!");
+            else MessageBox.Show("Nothing to delete");
+
         }
     }
 
