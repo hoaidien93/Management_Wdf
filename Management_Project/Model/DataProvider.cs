@@ -11,28 +11,43 @@ namespace Management_Project.Model
     {
         public static bool checkLogin(String username, String password)
         {
-            QuanLyBanHangEntities db = new QuanLyBanHangEntities();
-            var dataset = db.Users.Where(x => x.Username == username && x.Password == password).ToList();
-            if (dataset.Count > 0) return true;
-            return false;
+            try
+            {
+                QuanLyBanHangEntities db = new QuanLyBanHangEntities();
+                var dataset = db.Users.Where(x => x.Username == username && x.Password == password).ToList();
+                if (dataset.Count > 0) return true;
+                return false;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
         }
         
         public static ObservableCollection<TonKho> getAllProduct()
         {
-            QuanLyBanHangEntities db = new QuanLyBanHangEntities();
-            var dataset = db.Products.Where(x => x.isDeleted == "0").ToList();
-            ObservableCollection<TonKho> result = new ObservableCollection<TonKho>();
-            for (int i = 0; i < dataset.Count; i++)
+            try
             {
-                TonKho temp = new TonKho();
-                temp.STT = (i+1).ToString();
-                temp.Name = dataset[i].Name;
-                temp.ProductID = dataset[i].ProductID;
-                temp.CategoryID = dataset[i].CategoryID;
-                temp.Cost = dataset[i].Cost;
-                result.Add(temp);
+                QuanLyBanHangEntities db = new QuanLyBanHangEntities();
+                var dataset = db.Products.Where(x => x.isDeleted == "0").ToList();
+                ObservableCollection<TonKho> result = new ObservableCollection<TonKho>();
+                for (int i = 0; i < dataset.Count; i++)
+                {
+                    TonKho temp = new TonKho();
+                    temp.STT = (i + 1).ToString();
+                    temp.Name = dataset[i].Name;
+                    temp.ProductID = dataset[i].ProductID;
+                    temp.CategoryID = dataset[i].CategoryID;
+                    temp.Cost = dataset[i].Cost;
+                    result.Add(temp);
+                }
+                return result;
             }
-            return result;
+            catch (Exception)
+            {
+                ObservableCollection<TonKho> result = new ObservableCollection<TonKho>();
+                return result;
+            }
         }
 
         public static bool AddProduct(string Ten_SP, string ID_SP, string Gia_SP, string Loai_SP)
@@ -303,6 +318,58 @@ namespace Management_Project.Model
 
             }
         }
+
+        public static List<SaleProduct> GetHistory(DateTime start, DateTime end)
+        {
+            try
+            {
+                QuanLyBanHangEntities db = new QuanLyBanHangEntities();
+                var dataset = (from p in db.Bills
+                               join q in db.BillInfoes
+                               on p.Bill_ID equals q.Bill_ID
+                               where p.Created_at >= start && p.Created_at <= end
+                               select q
+                              ).ToList();
+                List<SaleProduct> result = new List<SaleProduct>();
+                List<string> ProductID = new List<string>();
+                List<string> ProductName = new List<string>();
+                List<int> Qty = new List<int>();
+                for (int i = 0; i < dataset.Count; i++)
+                {
+                    int index = ProductID.IndexOf(dataset[i].ProductID);
+                    int t = Int32.Parse(dataset[i].Qty.ToString());
+                    if (index != -1)
+                    {
+                        Qty[index] = Qty[index] + t;
+                    }
+                    else
+                    {
+                        ProductID.Add(dataset[i].ProductID);
+                        Qty.Add(t);
+                    }
+                }
+                for (int i = 0; i < ProductID.Count; i++)
+                {
+                    string str = ProductID[i].Trim();
+                    Product p = db.Products.First(x => x.ProductID == str);
+                    SaleProduct sp = new SaleProduct();
+                    sp.CategoryID = p.CategoryID;
+                    sp.Cost = p.Cost;
+                    sp.ProductID = p.ProductID;
+                    sp.Name = p.Name;
+                    sp.Qty = Qty[i].ToString();
+                    sp.Total = (Qty[i] * Int32.Parse(sp.Cost)).ToString();
+                    sp.STT = i + 1;
+                    result.Add(sp);
+                }
+                return result;
+            }
+            catch(Exception e)
+            {
+                List<SaleProduct> result = new List<SaleProduct>();
+                return result;
+            }
+        }
     }
 
     public class TonKho
@@ -320,5 +387,17 @@ namespace Management_Project.Model
         public int STT { get; set; }
         public string CategoryID { get; set; }
         public string Name { get; set; }
+    }
+
+    public class SaleProduct
+    {
+        public int STT { get; set; }
+        public string ProductID { get; set; }
+        public string Name { get; set; }
+        public string CategoryID { get; set; }
+        public string Cost { get; set; }
+        public string Qty { get; set; }
+        public string Total { get; set; }
+
     }
 }

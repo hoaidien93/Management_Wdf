@@ -36,7 +36,8 @@
 		VerticalAlignment="Bottom" Width="629">
             <chartingToolkit:ColumnSeries DependentValuePath="Value" 
 
-		IndependentValuePath="Key" ItemsSource="{Binding}" Margin="10,0,7,0"/>
+		IndependentValuePath="Key" ItemsSource="{Binding}" DataContext="{Binding}"
+ Margin="10,0,7,0"/>
         </chartingToolkit:Chart>
     </Grid>
 </Window>

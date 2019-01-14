@@ -133,5 +133,11 @@ namespace Management_Project
             Delete.IsEnabled = true;
             Change.IsEnabled = true;
         }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            ThongKeChiTiet window = new ThongKeChiTiet();
+            window.Show();
+        }
     }
 }

@@ -97,14 +97,14 @@
                             </Grid>
                         </Grid>
                     </Button>
-                    <Button Grid.Column="4" ToolTip="Nhà cung cấp">
+                    <Button Grid.Column="4" ToolTip="Thống kê chi tiết" Click="Button_Click_5">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <TextBlock Text="Nhà cung cấp" HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Text="Thống kê chi tết" HorizontalAlignment="Center"></TextBlock>
                             </Grid>
                             <Grid Grid.Row="1">
                                 <materialDesign:PackIcon Width="24" Height="24"  HorizontalAlignment="Center"  Kind="Factory" />
@@ -156,13 +156,13 @@
                                             ToolTip="Resource name: MaterialDesignRaisedButton" Click="Button_Click_1"></Button>
                                 </Grid>
                                 <Grid Grid.Column="4">
-                                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="373,10,-315,10"
+                                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="380,11,-297,9"
                                             Width="80"
                                             Content="Xóa"
                                             ToolTip="Resource name: MaterialDesignRaisedButton" Name="Delete" Click="Delete_Click" IsEnabled="False"></Button>
                                 </Grid>
                                 <Grid Grid.Column="5">
-                                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="470,10,-406,0"
+                                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="468,11,-384,0"
                                             Width="80"
                                             Content="Sửa"
                                             ToolTip="Resource name: MaterialDesignRaisedButton" Name="Change" VerticalAlignment="Top" Click="Change_Click" IsEnabled="False"></Button>

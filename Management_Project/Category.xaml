@@ -23,7 +23,7 @@
                 <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Grid.ColumnSpan="3" Margin="0,0,-507,81">
-                <ListView ItemsSource="{Binding CategoryList}" Margin="30,0,63,0" Name="ListCategory" Height="284" VerticalAlignment="Top">
+                <ListView ItemsSource="{Binding CategoryList}" Margin="30,0,63,0" Name="ListCategory" Height="284" VerticalAlignment="Top" SelectionChanged="ListCategory_SelectionChanged">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="STT" DisplayMemberBinding="{Binding STT}"></GridViewColumn>
@@ -38,14 +38,14 @@
                         Width="80"
                         Content="Thêm"
                         ToolTip="Resource name: MaterialDesignRaisedButton" x:Name="ADD" VerticalAlignment="Top" Click="ADD_Click"/>
-                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="216,317,283,0"
+                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="228,317,280,0"
                         Width="80"
                         Content="Xóa"
-                        ToolTip="Resource name: MaterialDesignRaisedButton" x:Name="Delete" VerticalAlignment="Top" Click="Delete_Click"/>
-                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="396,317,106,0"
+                        ToolTip="Resource name: MaterialDesignRaisedButton" x:Name="Delete" VerticalAlignment="Top" Click="Delete_Click" IsEnabled="False"/>
+                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="402,317,109,0"
                                             Width="80"
                                             Content="Sửa"
-                                            ToolTip="Resource name: MaterialDesignRaisedButton" Name="Change" VerticalAlignment="Top" RenderTransformOrigin="0.958,0.453" Click="Change_Click"></Button>
+                                            ToolTip="Resource name: MaterialDesignRaisedButton" Name="Change" VerticalAlignment="Top" RenderTransformOrigin="0.958,0.453" Click="Change_Click" IsEnabled="False"></Button>
                 </Grid>
             </Grid>
         </Grid>

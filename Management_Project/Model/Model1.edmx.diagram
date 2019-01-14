@@ -6,11 +6,11 @@
     <edmx:Diagrams>
       <Diagram DiagramId="8fde8bb3806347c187498f1662f748f3" Name="Diagram1">
         <EntityTypeShape EntityType="QuanLyBanHangModel.Bill" Width="1.5" PointX="1.75" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyBanHangModel.BillInfo" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.BillInfo" Width="1.5" PointX="5.25" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyBanHangModel.Category" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyBanHangModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.Product" Width="1.5" PointX="3" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyBanHangModel.sysdiagram" Width="1.5" PointX="5.5" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyBanHangModel.User" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.User" Width="1.5" PointX="7.25" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="QuanLyBanHangModel.FK_BillInfo_Bill" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyBanHangModel.FK_BillInfo_Product" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyBanHangModel.FK_Product_Category" ManuallyRouted="false" />

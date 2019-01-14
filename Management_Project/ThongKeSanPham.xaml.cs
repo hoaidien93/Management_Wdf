@@ -64,10 +64,12 @@ namespace Management_Project
                 columnChart.DataContext = null;
                 List<KeyValuePair<string, int>> valueList = DataProvider.GetProducts(startDate, endDate);
                 columnChart.DataContext = valueList;
+                return;
+               
             }
-            catch (Exception)
+            catch (Exception )
             {
-                MessageBox.Show("Something went wrong!");
+               MessageBox.Show("Something went wrong!");
             }
         }
     }

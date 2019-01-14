@@ -80,6 +80,12 @@ namespace Management_Project
             window.Closed += (s, args) => this.updateData();
             window.Show();
         }
+
+        private void ListCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Change.IsEnabled = true;
+            Delete.IsEnabled = true;
+        }
     }
         
 }

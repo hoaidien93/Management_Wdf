@@ -35,7 +35,6 @@ namespace Management_Project
 
             List<KeyValuePair<string, int>> valueList =  DataProvider.GetRevenue(date,date);
             
-
             //Setting data for column chart
             lineChart.DataContext = valueList;
             //Setting data for bar chart

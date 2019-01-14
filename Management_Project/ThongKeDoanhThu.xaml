@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Management_Project"
         xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         mc:Ignorable="d"
-        Title="Thống Kê DoanhThu" Height="450" Width="800"
+        Title="Thống Kê Doanh Thu" Height="450" Width="800"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
@@ -35,7 +35,7 @@
             <chartingToolkit:LineSeries  DependentValuePath="Value" 
 
 		IndependentValuePath="Key" ItemsSource="{Binding}" 
-
+            DataContext="{Binding}"
 		IsSelectionEnabled="True"/>
         </chartingToolkit:Chart>
     </Grid>
